@@ -1,0 +1,5 @@
+log:
+  level: info
+  extra:
+    - service=${app.name}
+  url: graylog.myhost:12201
