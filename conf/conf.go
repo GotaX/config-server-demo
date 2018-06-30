@@ -42,13 +42,14 @@ func initDefault() {
 	viper.SetDefault(kConfigServer, "http://localhost:8080")
 	viper.SetDefault(kConfigLabel, "config")
 	viper.SetDefault(kConfigProfile, "default")
-	viper.SetDefault(kConfigType, "YAML")
+	viper.SetDefault(kConfigType, "yaml")
 }
 
 func loadRemoteConfig() (err error) {
-	confAddr := fmt.Sprintf("%v/%v/%v-%v.yml",
+	confAddr := fmt.Sprintf("%v/%v/%v-%v.%v",
 		viper.Get(kConfigServer), viper.Get(kConfigLabel),
-		viper.Get(kAppName), viper.Get(kConfigProfile))
+		viper.Get(kAppName), viper.Get(kConfigProfile),
+		viper.Get(kConfigType))
 	resp, err := http.Get(confAddr)
 	if err != nil {
 		return
